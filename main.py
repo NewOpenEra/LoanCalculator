@@ -38,7 +38,7 @@ def num_of_payments():
             print(f"It will take {pluralize(years, 'year', 'years')} to repay this loan!")
 
 
-def monthly_payment_amount():
+def monthly_annuity_payment():
     print("Enter the loan principal: ")
     principal = int(input())
     print("Enter the number of periods: ")
@@ -54,6 +54,23 @@ def monthly_payment_amount():
 
     # Output answer to the user
     print(f"Your monthly payment = {annuity}!")
+
+
+def monthly_differentiated_payment():
+    print("Enter the loan principal: ")
+    principal = int(input())
+    print("Enter the number of periods: ")
+    periods = int(input())
+    print("Enter the loan interest: ")
+    interest = float(input())
+
+    # Calculate the nominal interest rate
+    i = interest / (MONTHS_IN_YEAR * 100)
+
+    for m in range(1,periods+1):
+        dm = math.ceil(principal / periods + i * (principal - ((principal * (m - 1)) / periods)))
+        print(f"Month {m}: payment is {dm}")
+
 
 
 def calculate_principal():
@@ -77,6 +94,7 @@ def calculate_principal():
 print('''What do you want to calculate?
 type "n" for number of monthly payments,
 type "a" for annuity monthly payment amount,
+type "d" for differentiated monthly payment amount,
 type "p" for loan principal: ''')
 
 choice = input()
@@ -84,6 +102,8 @@ choice = input()
 if choice == "n":
     num_of_payments()
 elif choice == "a":
-    monthly_payment_amount()
+    monthly_annuity_payment()
 elif choice == "p":
     calculate_principal()
+elif choice == "d":
+    monthly_differentiated_payment()
