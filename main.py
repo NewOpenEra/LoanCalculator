@@ -96,7 +96,7 @@ def calculate_principal():
 
 # Sanity Checks: Print "Incorrect Parameters" warning if:
 # no type or invalid type is chosen
-if not calc_type or (calc_type != "annuity" and calc_type != "diff"):
+if not calc_type or (calc_type not in ["annuity", "diff"]):
     print("Incorrect Parameters")
 # differentiated payment type is chosen, but a payment value is entered
 elif args.type == "diff" and payment:
