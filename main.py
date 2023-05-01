@@ -6,15 +6,11 @@ MONTHS_IN_YEAR = 12
 
 parser = argparse.ArgumentParser(description="Loan Calculator")
 
-parser.add_argument("--type", choices=["annuity", "diff"], help="You need to choose the type of payment")
+parser.add_argument("--type", choices=["annuity", "diff"], help="You need to choose one type of payment")
 parser.add_argument("--interest", type=float, help="The interest rate of the loan")
 parser.add_argument("--principal", type=int, help="The loan principal amount")
 parser.add_argument("--periods", type=int, help="The total number of repayments to be made")
 parser.add_argument("--payment", type=int, help="The payment amount each period")
-
-group = parser.add_mutually_exclusive_group()
-group.add_argument("--annuity", action="store_true", help="Calculate annuity payment")
-group.add_argument("--diff", action="store_true", help="Calculate differentiated payment")
 
 args = parser.parse_args()
 calc_type = args.type
